@@ -1,0 +1,1 @@
+"""Water tracker application package."""

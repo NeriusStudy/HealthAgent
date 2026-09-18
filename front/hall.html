@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>服务大厅 | 饮水记录</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="service-page" data-page="hall">
+    <header class="service-header">
+      <div class="service-brand"><span class="brand-mark small">水</span><span>WATER LOG</span></div>
+      <div class="service-user"><span id="userName">用户</span><button id="logoutButton" class="text-button" type="button">退出登录</button></div>
+    </header>
+    <main class="service-main">
+      <div class="service-heading">
+        <p class="eyebrow">SERVICE HALL</p>
+        <h1>服务大厅</h1>
+        <p>选择一个服务，开始管理你的健康记录。</p>
+      </div>
+      <section class="service-grid" aria-label="服务列表">
+        <button id="waterService" class="service-card" type="button">
+          <span class="service-icon">◒</span>
+          <span class="service-card-copy"><strong>饮水记录</strong><small>记录每天喝水，了解你的饮水节奏</small></span>
+          <span class="service-arrow">→</span>
+        </button>
+      </section>
+    </main>
+    <script src="./hall.js"></script>
+  </body>
+</html>

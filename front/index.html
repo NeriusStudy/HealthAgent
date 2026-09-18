@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>饮水记录 | 登录</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="brand-panel" aria-label="产品介绍">
+        <div class="brand-mark">水</div>
+        <p class="eyebrow">WATER LOG</p>
+        <h1>把每一杯水，<br /><em>记得刚刚好。</em></h1>
+        <p class="brand-copy">用微信号安全登录，继续记录你的每日饮水节奏。</p>
+        <div class="water-line" aria-hidden="true"><span></span></div>
+        <p class="brand-note">健康，从一杯水开始</p>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-wrap">
+          <div class="mobile-brand"><span class="brand-mark small">水</span><span>WATER LOG</span></div>
+
+          <div id="loginView" class="view">
+            <p class="eyebrow">欢迎回来</p>
+            <h2>登录你的账户</h2>
+            <p class="subtitle">输入微信号和密码后继续使用。</p>
+            <form id="loginForm" novalidate>
+              <label class="field">
+                <span>微信号</span>
+                <input id="loginOpenid" name="openid" type="text" autocomplete="username" placeholder="例如 wx_123456" required />
+              </label>
+              <label class="field">
+                <span>密码</span>
+                <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="请输入密码" required />
+              </label>
+              <button class="primary-button" type="submit">登录 <span aria-hidden="true">→</span></button>
+            </form>
+            <p id="loginMessage" class="message" role="alert" aria-live="polite"></p>
+            <p class="switch-tip">首次使用？输入微信号和密码后点击登录即可注册。</p>
+          </div>
+
+          <div id="registerView" class="view hidden">
+            <button id="backToLogin" class="back-button" type="button">← 返回登录</button>
+            <p class="eyebrow">第一次见面</p>
+            <h2>创建账户</h2>
+            <p class="subtitle">这个微信号还没有账户，请完善注册信息。</p>
+            <form id="registerForm" novalidate>
+              <label class="field">
+                <span>设置密码</span>
+                <input id="registerPassword" type="password" autocomplete="new-password" placeholder="至少 6 位，含字母和数字" required />
+              </label>
+              <label class="field">
+                <span>确认密码</span>
+                <input id="registerPasswordAgain" type="password" autocomplete="new-password" placeholder="再次输入密码" required />
+              </label>
+              <label class="field">
+                <span>昵称 <small>可选</small></span>
+                <input id="registerNickname" type="text" maxlength="64" placeholder="例如：小水滴" />
+              </label>
+              <button class="primary-button" type="submit">完成注册 <span aria-hidden="true">→</span></button>
+            </form>
+            <p id="registerMessage" class="message" role="alert" aria-live="polite"></p>
+          </div>
+        </div>
+        <p class="footer-note">你的账号信息仅用于饮水记录服务</p>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

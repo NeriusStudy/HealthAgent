@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>饮水记录 | WATER LOG</title>
+    <link rel="stylesheet" href="./styles.css?v=3" />
+  </head>
+  <body class="service-page" data-page="water">
+    <header class="service-header">
+      <div class="service-brand"><span class="brand-mark small">水</span><span>WATER LOG</span></div>
+      <div class="service-user"><span id="userName">用户</span><button id="logoutButton" class="text-button" type="button">退出登录</button></div>
+    </header>
+    <main class="service-main water-main">
+      <button id="backToHall" class="back-button" type="button">← 返回服务大厅</button>
+      <div class="water-layout">
+        <section class="records-column" aria-label="饮水记录列表">
+          <div class="records-heading">
+            <div>
+              <p class="eyebrow">WATER LOG</p>
+              <h1>饮水记录</h1>
+              <span id="recordCount" class="record-count">0 条记录</span>
+            </div>
+            <button id="addRecordButton" class="primary-button compact-button" type="button">+ 新增记录</button>
+          </div>
+          <div id="recordList" class="record-list" aria-live="polite"></div>
+        </section>
+        <aside class="water-side-panel" aria-label="饮水目标和数据统计">
+          <section class="water-panel goal-panel">
+            <div class="panel-title-row">
+              <div>
+                <p class="eyebrow">DAILY TARGET</p>
+                <h2>饮水目标</h2>
+              </div>
+              <span class="goal-mark">◎</span>
+            </div>
+            <div class="goal-editor">
+              <input id="goalInput" type="number" min="1" max="10000" step="50" placeholder="例如 2000" aria-label="每日饮水目标" />
+              <span>ml / 天</span>
+              <button id="saveGoalButton" class="small-button" type="button">保存</button>
+            </div>
+            <p id="goalMessage" class="panel-message" role="alert"></p>
+            <div class="today-summary">
+              <div><span>今日饮水量</span><strong id="todayAmount">0 ml</strong></div>
+              <div><span>目标完成</span><strong id="todayProgress">暂无目标</strong></div>
+            </div>
+            <div class="progress-track"><span id="todayProgressBar"></span></div>
+          </section>
+
+          <section class="water-panel stats-panel">
+            <div class="panel-title-row">
+              <div>
+                <p class="eyebrow">INSIGHTS</p>
+                <h2>数据查询与统计</h2>
+              </div>
+            </div>
+            <div class="date-query">
+              <label><span>开始日期</span><input id="queryStart" type="date" /></label>
+              <label><span>截至日期</span><input id="queryEnd" type="date" /></label>
+              <button id="queryButton" class="small-button" type="button">查询</button>
+            </div>
+            <p id="queryMessage" class="panel-message" role="alert"></p>
+            <div class="stats-overview">
+              <div><span>期间总量</span><strong id="rangeTotal">0 ml</strong></div>
+              <div><span>日均饮水量</span><strong id="rangeAverage">0 ml</strong></div>
+            </div>
+            <div id="dailyStats" class="daily-stats" aria-live="polite"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <div id="recordModal" class="record-modal hidden" role="dialog" aria-modal="true" aria-labelledby="recordModalTitle">
+      <div class="record-modal-card">
+        <div class="modal-heading">
+          <h2 id="recordModalTitle">新增饮水记录</h2>
+          <button id="cancelRecord" class="close-button" type="button" aria-label="关闭">×</button>
+        </div>
+        <form id="recordForm">
+          <label class="field"><span>饮水量（ml）</span><input id="recordAmount" type="number" min="1" max="5000" step="1" placeholder="例如 250" required /></label>
+          <label class="field"><span>饮水时间</span><input id="recordDrankAt" type="datetime-local" required /></label>
+          <p id="recordFormMessage" class="message" role="alert"></p>
+          <button class="primary-button" type="submit">保存记录 <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </div>
+    <script src="./hall.js?v=3"></script>
+    <script src="./water.js?v=3"></script>
+  </body>
+</html>
