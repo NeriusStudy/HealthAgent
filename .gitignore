@@ -27,3 +27,6 @@ env/
 .idea/
 .DS_Store
 Thumbs.db
+
+# WeChat developer tool local settings
+miniprogram/project.private.config.json

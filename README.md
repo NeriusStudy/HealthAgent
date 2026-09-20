@@ -867,4 +867,42 @@ python -m pytest -q
 3. 建议生产环境使用 HTTPS，避免 Token 和 API Key 在网络中明文传输。
 4. 当前系统使用 SQLite 进行本地开发，生产环境建议使用 PostgreSQL。
 5. 当前 CORS 配置为允许所有来源，生产环境应限制为实际前端域名。
-6. `wechat-login` 当前接收的是客户端提供的 `openid`，真实微信环境应在后端通过微信官方接口校验登录凭证后再取得可信身份。
+6. 本地联调可向 `wechat-login` 传测试 `openid`；真实微信环境必须传 `wx.login` 返回的临时 `code`，由后端换取可信身份。
+
+## 14. 微信小程序
+
+原生微信小程序位于 `miniprogram/`，当前已实现：
+
+- 开发环境 OpenID 登录、首次注册和登录态管理
+- 正式环境 `wx.login` code 登录
+- 今日饮水量、目标进度和最近记录
+- 快捷/自定义新增饮水记录
+- 饮水记录列表、修改和删除
+- 每日饮水目标查询和更新
+
+### 14.1 本地联调
+
+启动后端：
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+然后在微信开发者工具中导入 `miniprogram/`。默认配置位于 `miniprogram/app.js`：
+
+```js
+apiBase: 'http://127.0.0.1:8000/api/v1',
+authMode: 'dev'
+```
+
+开发者工具需要勾选“不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书”。登录页可使用任意测试 OpenID，例如 `wx_dev_001`；首次登录会进入注册流程。
+
+### 14.2 真机与上线
+
+1. 将 `miniprogram/project.config.json` 中的 `appid` 换成真实小程序 AppID。
+2. 复制 `.env.example` 为 `.env`，配置 `WECHAT_APPID`、`WECHAT_SECRET` 和安全的 `SECRET_KEY`。
+3. 将 `miniprogram/app.js` 的 `authMode` 改为 `wechat`。
+4. 将 `apiBase` 改为已备案、已配置微信 request 合法域名的 HTTPS 地址。
+5. `WECHAT_SECRET` 只能保存在后端，不能写入小程序代码。
+
+`POST /api/v1/auth/wechat-login` 现在兼容两种请求：开发模式传 `openid`，正式模式传 `wx.login` 返回的 `code`。两者只能传一个。
