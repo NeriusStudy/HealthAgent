@@ -3,4 +3,6 @@ from app.models.water_record import WaterRecord
 from app.models.water_goal import WaterGoal
 from app.models.api_key import ApiKey
 
-__all__ = ["User", "WaterRecord", "WaterGoal", "ApiKey"]
+__all__ = ["User", "WaterRecord", "WaterGoal", "ApiKey", "AgentIdentity"]
+
+from app.models.agent_identity import AgentIdentity

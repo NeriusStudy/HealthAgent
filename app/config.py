@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     wechat_appid: str = "test-appid"
     wechat_secret: str = "test-secret"
     cors_origins: str = "*"
+    agent_bootstrap_secret: str = ""
 
     model_config = SettingsConfigDict(env_file=BASE_DIR / ".env", extra="ignore")
 
