@@ -30,3 +30,8 @@ Thumbs.db
 
 # WeChat developer tool local settings
 miniprogram/project.private.config.json
+
+# OpenClaw local build artifacts
+openclaw/plugins/**/node_modules/
+openclaw/plugins/**/dist/
+*.before-auto-bootstrap
